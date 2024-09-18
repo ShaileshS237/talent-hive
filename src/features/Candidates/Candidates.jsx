@@ -6,7 +6,7 @@ import { IoMdAdd } from "react-icons/io";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import TableComponent from "../../components/TableComponent/TableComponent";
 const style = {
 	position: "absolute",
 	top: "50%",
@@ -26,6 +26,17 @@ export default function Candidates() {
 	const handleClose = () => setOpen(false);
 	return (
 		<div>
+			<Modal
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+			>
+				<Box sx={style}>
+					<Title title="Add Candidate" />
+					<UserForm />
+				</Box>
+			</Modal>
 			{/* <Title title={"Candidates"} /> */}
 			<div className="flex justify-between items-center">
 				<h1 className="text-2xl font-medium">Candidates</h1>
@@ -34,17 +45,9 @@ export default function Candidates() {
 					title={"Add Candidate"}
 					icon={<IoMdAdd />}
 				/>
-				<Modal
-					open={open}
-					onClose={handleClose}
-					aria-labelledby="modal-modal-title"
-					aria-describedby="modal-modal-description"
-				>
-					<Box sx={style}>
-						<Title title="Add Candidate" />
-						<UserForm />
-					</Box>
-				</Modal>
+			</div>
+			<div>
+				<TableComponent />
 			</div>
 		</div>
 	);
