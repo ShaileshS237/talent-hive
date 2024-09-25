@@ -4,9 +4,11 @@ import UserForm from "../UserForm/UserForm";
 import Button from "../../components/Button/Button";
 import { IoMdAdd } from "react-icons/io";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TableComponent from "../../components/TableComponent/TableComponent";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import ModalClose from '@mui/joy/ModalClose';
+
 const style = {
 	position: "absolute",
 	top: "50%",
@@ -23,7 +25,12 @@ export default function Candidates() {
 	const handleOpen = () => {
 		setOpen(true); // Open the modal
 	};
-	const handleClose = () => setOpen(false);
+	
+	const handleClose = (event,reason) => {
+		if(reason && reason === "backdropClick") return
+		setOpen(false);
+	}
+
 	return (
 		<div>
 			<Modal
@@ -31,9 +38,14 @@ export default function Candidates() {
 				onClose={handleClose}
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
+				data-bs-backdrop="static"
 			>
 				<Box sx={style}>
-					<Title title="Add Candidate" />
+					<div className="flex justify-between">
+						<Title title="Add Candidate" />
+						{/* <button onClick={handleClose} ><IoCloseCircleOutline size={30} /></button> */}
+						<ModalClose onClick={handleClose} variant="plain" sx={{ m: 1 }} />
+					</div>
 					<UserForm onSubmit={handleClose} />
 				</Box>
 			</Modal>

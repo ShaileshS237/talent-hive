@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import Button from "../../components/Button/Button";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -12,10 +12,14 @@ import supabase from '../../supabase/client.js'
 export default function UserForm({onSubmit}) {
 	const [formData, setFormData] = useState({});
 	const [age, setAge] = React.useState("");
+	const [formSize,setFormSize] = useState(0);
+	const [isBtnDisabled,setIsBtnDisabled] = useState(true);
 
-	const handleSelect = (event) => {
-		setAge(event.target.value);
-	};
+	React.useEffect(() => {
+		if(formSize === 11) setIsBtnDisabled(false);
+	},[formSize]);
+
+	const handleSelect = (event) => setAge(event.target.value);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
@@ -23,12 +27,15 @@ export default function UserForm({onSubmit}) {
 			...prevData,
 			[name]: value,
 		}));
+		setFormSize(Object.values(formData).filter((data) => data != '').length)
+		console.log(Object.values(formData));
+		
 	};
 
 	const handleSubmit = async(e) => {
 		e.preventDefault();
 		onSubmit();
-
+		
 		const {data,error} = await supabase.from('candidates').insert(formData).select();
 		if(error) console.log(error);
 	}
@@ -45,20 +52,14 @@ export default function UserForm({onSubmit}) {
 						fullWidth
 						onChange={handleChange}
 					/>
-					<FormControl fullWidth>
-						<InputLabel id="demo-simple-select-label">Age</InputLabel>
-						<Select
-							labelId="demo-simple-select-label"
-							id="demo-simple-select"
-							value={age}
-							label="Age"
-							onChange={handleSelect}
-						>
-							<MenuItem value={10}>Ten</MenuItem>
-							<MenuItem value={20}>Twenty</MenuItem>
-							<MenuItem value={30}>Thirty</MenuItem>
-						</Select>
-					</FormControl>
+					<TextField
+						label="age"
+						name="age"
+						type="number"
+						variant="outlined"
+						fullWidth
+						onChange={handleChange}
+					/>
 					<TextField
 						label="Date of Birth"
 						name="date"
@@ -148,8 +149,9 @@ export default function UserForm({onSubmit}) {
 					type="submit"
 					icon={<MdDone />}
 					title={"Submit"}
-					padding={3}
+					// padding="4"
 					align={"center"}
+					disabled={isBtnDisabled}
 				/>
 			</form>
 		</div>

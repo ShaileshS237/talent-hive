@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function FormInput({ label, name, type, onChange }) {
+export default function FormInput({label, name, type, onChange}) {
 	useEffect(() => {
 		if (type === "number") {
 			const numberInput = document.querySelector(`input[name="${name}"]`);
@@ -32,7 +32,7 @@ export default function FormInput({ label, name, type, onChange }) {
 				required
 				name={name}
 				type={type}
-				onChange={onChange}
+				onInput={onChange}
 			/>
 		</div>
 	);
