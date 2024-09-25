@@ -1,14 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
 import { TextField } from "@mui/material";
-import styles from "./UserProfileForm.module.css";
 import Button from "../../components/Button/Button";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { MdDone } from "react-icons/md";
-export default function UserForm() {
+import supabase from '../../supabase/client.js'
+
+export default function UserForm({onSubmit}) {
 	const [formData, setFormData] = useState({});
 	const [age, setAge] = React.useState("");
 
@@ -24,10 +25,13 @@ export default function UserForm() {
 		}));
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault();
-		console.log(formData);
-	};
+		onSubmit();
+
+		const {data,error} = await supabase.from('candidates').insert(formData).select();
+		if(error) console.log(error);
+	}
 
 	return (
 		<div className="w-full">

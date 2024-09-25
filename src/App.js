@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./features/Home/Home";
 import { Navbar } from "./components/Navbar/Navbar";
 import Candidates from "./features/Candidates/Candidates";
+
 function App() {
 	return (
 		<div className="flex h-screen">

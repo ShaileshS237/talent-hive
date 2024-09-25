@@ -34,7 +34,7 @@ export default function Candidates() {
 			>
 				<Box sx={style}>
 					<Title title="Add Candidate" />
-					<UserForm />
+					<UserForm onSubmit={handleClose} />
 				</Box>
 			</Modal>
 			{/* <Title title={"Candidates"} /> */}

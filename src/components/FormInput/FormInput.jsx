@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-// import styles from './FormInput.module.css'
 
 export default function FormInput({ label, name, type, onChange }) {
 	useEffect(() => {
