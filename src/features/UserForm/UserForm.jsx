@@ -2,24 +2,20 @@ import * as React from "react";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import Button from "../../components/Button/Button";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import { MdDone } from "react-icons/md";
 import supabase from '../../supabase/client.js'
 
 export default function UserForm({onSubmit}) {
 	const [formData, setFormData] = useState({});
-	const [age, setAge] = React.useState("");
-	const [formSize,setFormSize] = useState(0);
 	const [isBtnDisabled,setIsBtnDisabled] = useState(true);
 
 	React.useEffect(() => {
-		if(formSize === 11) setIsBtnDisabled(false);
-	},[formSize]);
+		const formSize = Object.values(formData).filter((data) => data != '').length
+		
+		if(formSize === 12) setIsBtnDisabled(false);
+		else setIsBtnDisabled(true);
+	},[formData]);
 
-	const handleSelect = (event) => setAge(event.target.value);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 
@@ -27,9 +23,6 @@ export default function UserForm({onSubmit}) {
 			...prevData,
 			[name]: value,
 		}));
-		setFormSize(Object.values(formData).filter((data) => data != '').length)
-		console.log(Object.values(formData));
-		
 	};
 
 	const handleSubmit = async(e) => {

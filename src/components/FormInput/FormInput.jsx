@@ -24,15 +24,13 @@ export default function FormInput({label, name, type, onChange}) {
 
 	return (
 		<div>
-			<p className="mb-2 font-sans subpixel-antialiased text-zinc-900">
-				{label}
-			</p>
 			<input
 				className="border-2 rounded-md border-gray-200 py-1.5 pl-4 w-full mr-1"
 				required
 				name={name}
 				type={type}
 				onInput={onChange}
+				placeholder={name}
 			/>
 		</div>
 	);
