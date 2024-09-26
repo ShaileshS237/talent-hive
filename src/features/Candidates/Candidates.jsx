@@ -43,23 +43,24 @@ export default function Candidates() {
 				<Box sx={style}>
 					<div className="flex justify-between">
 						<Title title="Add Candidate" />
-						{/* <button onClick={handleClose} ><IoCloseCircleOutline size={30} /></button> */}
 						<ModalClose onClick={handleClose} variant="plain" sx={{ m: 1 }} />
 					</div>
 					<UserForm onSubmit={handleClose} />
 				</Box>
 			</Modal>
 			{/* <Title title={"Candidates"} /> */}
-			<div className="flex justify-between items-center">
-				<h1 className="text-2xl font-medium">Candidates</h1>
-				<Button
-					onClick={handleOpen}
-					title={"Add Candidate"}
-					icon={<IoMdAdd />}
-				/>
-			</div>
-			<div>
-				<TableComponent />
+			<div className="grid">
+				<div className="flex justify-between items-center">
+					<h1 className="text-2xl font-medium">Candidates</h1>
+					<Button
+						onClick={handleOpen}
+						title={"Add Candidate"}
+						icon={<IoMdAdd />}
+					/>
+				</div>
+				<div>
+					<TableComponent />
+				</div>
 			</div>
 		</div>
 	);
