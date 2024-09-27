@@ -48,7 +48,7 @@ export default function Candidates() {
 					<UserForm onSubmit={handleClose} />
 				</Box>
 			</Modal>
-			{/* <Title title={"Candidates"} /> */}
+		
 			<div className="grid">
 				<div className="flex justify-between items-center">
 					<h1 className="text-2xl font-medium">Candidates</h1>
