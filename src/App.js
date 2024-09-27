@@ -5,7 +5,7 @@ import Candidates from "./features/Candidates/Candidates";
 
 function App() {
 	return (
-		<div className="flex h-screen">
+		<div className="flex h-screen overflow-x-hidden">
 			<Navbar />
 			<div className="p-5 w-full">
 				<Routes>

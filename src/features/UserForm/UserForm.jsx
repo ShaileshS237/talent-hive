@@ -142,7 +142,7 @@ export default function UserForm({onSubmit}) {
 					type="submit"
 					icon={<MdDone />}
 					title={"Submit"}
-					// padding="4"
+					padding="0.5"
 					align={"center"}
 					disabled={isBtnDisabled}
 				/>

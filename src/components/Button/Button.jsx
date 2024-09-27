@@ -4,7 +4,7 @@ export default function Button({
 	icon,
 	title,
 	onClick,
-	padding = 3,
+	padding="0.5",
 	align = "center",
 	disabled = false
 }) {
@@ -13,8 +13,8 @@ export default function Button({
 			<button
 				disabled = {disabled}
 				onClick={onClick}
-				className={`flex justify-center bg-[#2567eb] items-center text-white rounded-lg px-5 
-				py-${padding} w-full text-center
+				style={{ paddingTop: `${padding}rem`, paddingBottom: `${padding}rem` }}
+				className={`flex justify-center bg-[#2567eb] items-center text-white rounded-lg px-5 w-full text-center
 				${disabled ? "opacity-60" : "opacity-100"}
 				`}
 			>
