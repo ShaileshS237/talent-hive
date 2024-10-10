@@ -40,10 +40,17 @@ export default function UserForm({onSubmit}) {
 					<TextField
 						label="Name"
 						name="name"
-						type="text"
 						variant="outlined"
 						fullWidth
 						onChange={handleChange}
+						error
+						// error={nameError}
+						helperText={
+							nameError ? "Please enter your name (letters and spaces only)" : ""
+						}
+						slotProps={{
+							pattern: "[A-Za-z ]+",
+						}}
 					/>
 					<TextField
 						label="age"
@@ -68,6 +75,9 @@ export default function UserForm({onSubmit}) {
 						label="Email"
 						name="email"
 						type="email"
+						inputProps={{
+							type: "email",
+						  }}
 						variant="outlined"
 						fullWidth
 						onChange={handleChange}
