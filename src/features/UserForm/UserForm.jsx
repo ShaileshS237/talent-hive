@@ -45,9 +45,9 @@ export default function UserForm({onSubmit}) {
 						onChange={handleChange}
 						error
 						// error={nameError}
-						helperText={
-							nameError ? "Please enter your name (letters and spaces only)" : ""
-						}
+						// helperText={
+						// 	nameError ? "Please enter your name (letters and spaces only)" : ""
+						// }
 						slotProps={{
 							pattern: "[A-Za-z ]+",
 						}}
